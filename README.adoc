@@ -1,7 +1,7 @@
 # Stock Prediction demo setup
 
 ##  Pre-requisites:
-- GemFire 8.+ installed
+- Apache Geode installed
 - Spring XD 1.1+ installed
 - R 3.1+ installed with the following packages
 . RCurl
@@ -34,7 +34,7 @@ Install **R**:
 > install.packages(c("RCurl","quantmod","TTR","jsonlite","RSNNS"))
 ----
 
-### GemFire Setup
+### Apache Geode Setup
 
 * Execute the `setup.gfsh` script as follows:
 
