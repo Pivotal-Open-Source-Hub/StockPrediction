@@ -1,4 +1,4 @@
-# Finance Stream app setup
+# Stock Prediction demo setup
 
 ##  Pre-requisites:
 - GemFire 8.+ installed
