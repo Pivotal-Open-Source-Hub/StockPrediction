@@ -1,0 +1,219 @@
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 13:23:39
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream destroy r_process
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream destroy r_process
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream destroy r_process
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 14:05:49
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+// script --file streams.xd
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+stream destroy yahoo_finance_source
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 14:32:45
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-08 14:34:43
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 14:34:55
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream destroy yahoo_finance_source
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:03:22
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:11:38
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+stream list
+stream destroy yahoo_finance_source
+stream list
+stream all destroy
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:31:27
+stream list
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:35:48
+// [failed] stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// [failed] script --file stream-online-quotes.xd
+stream all destroy
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-08 15:37:31
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:38:31
+stream all destroy
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-08 15:40:08
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:41:54
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-08 15:43:18
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:46:21
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 15:51:37
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+stream list
+stream destroy yahoo_finance_source
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 16:31:13
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 16:38:27
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 16:39:32
+stream list
+stream destroy yahoo_finance_source
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-08 16:40:23
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-08 16:45:12
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream list
+stream destroy yahoo_finance_source
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 16:57:27
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-12 16:57:38
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 16:57:41
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// [failed] stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+// [failed] script --file stream-predictions.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-12 17:04:11
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 17:04:14
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream destroy yahoo_finance_source
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-12 17:13:06
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 19:08:52
+stream list
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+// [failed] stream destroy yahoo_finance_source
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-12 19:13:09
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 19:13:12
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-12 19:17:35
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+stream destroy yahoo_finance_source
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-13 13:12:23
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd 
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-19 12:05:00
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+// script --file stream-base.xd
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+// XD Shell 1.1.0.RELEASE log opened at 2015-05-21 11:46:20
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
+// script --file stream-online-quotes.xd
+stream destroy yahoo_finance_source
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
+// script --file stream-predictions.xd
+stream list
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
+exit
+// XD Shell 1.1.0.RELEASE log closed at 2015-05-21 12:00:05

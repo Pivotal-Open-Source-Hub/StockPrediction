@@ -1,0 +1,2 @@
+stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
+stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy

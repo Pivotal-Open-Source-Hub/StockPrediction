@@ -1,0 +1,507 @@
+
+[info 2015/05/13 13:24:34.960 PDT server2 <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with system property ###
+  use-cluster-configuration=true
+  ### GemFire Properties defined with api ###
+  name=server2
+  ### GemFire Properties defined with launcher ###
+  locators=10.84.19.52[10334]
+  log-file=server2.log
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cache-xml-file=cache.xml
+  cluster-configuration-dir=/Users/fmelo/FinanceStream-apachecon/server2
+  cluster-ssl-ciphers=any
+  cluster-ssl-enabled=false
+  cluster-ssl-keystore=
+  cluster-ssl-keystore-password=
+  cluster-ssl-keystore-type=
+  cluster-ssl-protocols=any
+  cluster-ssl-require-authentication=true
+  cluster-ssl-truststore=
+  cluster-ssl-truststore-password=
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=.
+  disable-auto-reconnect=false
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-cluster-configuration=true
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  gateway-ssl-ciphers=any
+  gateway-ssl-enabled=false
+  gateway-ssl-keystore=
+  gateway-ssl-keystore-password=
+  gateway-ssl-keystore-type=
+  gateway-ssl-protocols=any
+  gateway-ssl-require-authentication=true
+  gateway-ssl-truststore=
+  gateway-ssl-truststore-password=
+  groups=
+  http-service-bind-address=
+  http-service-port=7070
+  http-service-ssl-ciphers=any
+  http-service-ssl-enabled=false
+  http-service-ssl-keystore=
+  http-service-ssl-keystore-password=
+  http-service-ssl-keystore-type=
+  http-service-ssl-protocols=any
+  http-service-ssl-require-authentication=false
+  http-service-ssl-truststore=
+  http-service-ssl-truststore-password=
+  jmx-manager=false
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-hostname-for-clients=
+  jmx-manager-http-port=7070
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-ssl-ciphers=any
+  jmx-manager-ssl-enabled=false
+  jmx-manager-ssl-keystore=
+  jmx-manager-ssl-keystore-password=
+  jmx-manager-ssl-keystore-type=
+  jmx-manager-ssl-protocols=any
+  jmx-manager-ssl-require-authentication=true
+  jmx-manager-ssl-truststore=
+  jmx-manager-ssl-truststore-password=
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  load-cluster-configuration-from-dir=false
+  locator-wait-time=0
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=60000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-port=0
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-bind-address=
+  memcached-port=0
+  memcached-protocol=ASCII
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  server-ssl-ciphers=any
+  server-ssl-enabled=false
+  server-ssl-keystore=
+  server-ssl-keystore-password=
+  server-ssl-keystore-type=
+  server-ssl-protocols=any
+  server-ssl-require-authentication=true
+  server-ssl-truststore=
+  server-ssl-truststore-password=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-dev-rest-api=false
+  start-locator=
+  statistic-archive-file=
+  statistic-sample-rate=1000
+  statistic-sampling-enabled=true
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  user-command-packages=
+  writable-working-dir=
+  
+
+[info 2015/05/13 13:24:34.981 PDT server2 <main> tid=0x1] 
+  ---------------------------------------------------------------------------
+  
+    Copyright (C) 1997-2015 Pivotal Software, Inc. All rights reserved. This
+    product is protected by U.S. and international copyright and intellectual
+    property laws. Pivotal products are covered by one or more patents listed
+    at http://www.pivotal.io/patents.  Pivotal is a registered trademark
+    of trademark of Pivotal Software, Inc. in the United States and/or other
+    jurisdictions.  All other marks and names mentioned herein may be
+    trademarks of their respective companies.
+  
+  ---------------------------------------------------------------------------
+  Java version:   8.1.0 build 50625 01/16/2015 16:21:01 PST javac 1.7.0_72
+  Native version: native code unavailable
+  Source revision: 50625
+  Source repository: gemfire/branches/cedar_dev_Oct12
+  Running on: pivotal-guest-563.sf.pivotallabs.com/10.84.19.52, 8 cpu(s), x86_64 Mac OS X 10.10.3
+  Process ID: 25975
+  User: fmelo
+  Current dir: /Users/fmelo/FinanceStream-apachecon/server2
+  Home dir: /Users/fmelo
+  Command Line Parameters:
+    -Dgemfire.default.locators=10.84.19.52[10334]
+    -Dgemfire.use-cluster-configuration=true
+    -XX:OnOutOfMemoryError=kill -KILL %p
+    -Dgemfire.launcher.registerSignalHandlers=true
+    -Djava.awt.headless=true
+    -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+  Class Path:
+    /Users/fmelo/gemfire/lib/gemfire.jar
+    /Users/fmelo/gemfire/lib/server-dependencies.jar
+  Library Path:
+    /Users/fmelo/Library/Java/Extensions
+    /Library/Java/Extensions
+    /Network/Library/Java/Extensions
+    /System/Library/Java/Extensions
+    /usr/lib/java
+    .
+  System Properties:
+      awt.toolkit = sun.lwawt.macosx.LWCToolkit
+      file.encoding = UTF-8
+      file.encoding.pkg = sun.io
+      file.separator = /
+      ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      gemfire.default.locators = 10.84.19.52[10334]
+      gemfire.launcher.registerSignalHandlers = true
+      gemfire.use-cluster-configuration = true
+      gopherProxySet = false
+      http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      java.awt.graphicsenv = sun.awt.CGraphicsEnvironment
+      java.awt.headless = true
+      java.awt.printerjob = sun.lwawt.macosx.CPrinterJob
+      java.class.version = 52.0
+      java.endorsed.dirs = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/endorsed
+      java.ext.dirs = /Users/fmelo/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+      java.home = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre
+      java.io.tmpdir = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/
+      java.runtime.name = Java(TM) SE Runtime Environment
+      java.runtime.version = 1.8.0_40-b27
+      java.specification.name = Java Platform API Specification
+      java.specification.vendor = Oracle Corporation
+      java.specification.version = 1.8
+      java.vendor = Oracle Corporation
+      java.vendor.url = http://java.oracle.com/
+      java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+      java.version = 1.8.0_40
+      java.vm.info = mixed mode
+      java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+      java.vm.specification.name = Java Virtual Machine Specification
+      java.vm.specification.vendor = Oracle Corporation
+      java.vm.specification.version = 1.8
+      java.vm.vendor = Oracle Corporation
+      java.vm.version = 25.40-b25
+      jna.platform.library.path = /usr/lib:/usr/lib
+      jnidispatch.path = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/jna-97546881/jna8646116491899531666.tmp
+      line.separator = 
+  
+      log4j.configurationFile = jar:file:/Users/fmelo/Pivotal_GemFire_810_b50625_Linux/lib/gemfire.jar!/com/gemstone/gemfire/internal/logging/log4j/log4j2-default.xml
+      os.version = 10.10.3
+      p2p.useSSL = false
+      path.separator = :
+      socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      sun.arch.data.model = 64
+      sun.boot.class.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/classes
+      sun.boot.library.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib
+      sun.cpu.endian = little
+      sun.cpu.isalist = 
+      sun.io.unicode.encoding = UnicodeBig
+      sun.java.command = com.gemstone.gemfire.distributed.ServerLauncher start server2 --redirect-output --server-port=40443
+      sun.java.launcher = SUN_STANDARD
+      sun.jnu.encoding = UTF-8
+      sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+      sun.nio.ch.bugLevel = 
+      sun.os.patch.level = unknown
+      sun.rmi.dgc.server.gcInterval = 9223372036854775806
+      user.country = US
+      user.language = en
+      user.timezone = America/Los_Angeles
+  ---------------------------------------------------------------------------
+  
+
+[info 2015/05/13 13:24:34.983 PDT server2 <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with system property ###
+  use-cluster-configuration=true
+  ### GemFire Properties defined with api ###
+  name=server2
+  ### GemFire Properties defined with launcher ###
+  locators=10.84.19.52[10334]
+  log-file=server2.log
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cache-xml-file=cache.xml
+  cluster-configuration-dir=/Users/fmelo/FinanceStream-apachecon/server2
+  cluster-ssl-ciphers=any
+  cluster-ssl-enabled=false
+  cluster-ssl-keystore=
+  cluster-ssl-keystore-password=
+  cluster-ssl-keystore-type=
+  cluster-ssl-protocols=any
+  cluster-ssl-require-authentication=true
+  cluster-ssl-truststore=
+  cluster-ssl-truststore-password=
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=.
+  disable-auto-reconnect=false
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-cluster-configuration=true
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  gateway-ssl-ciphers=any
+  gateway-ssl-enabled=false
+  gateway-ssl-keystore=
+  gateway-ssl-keystore-password=
+  gateway-ssl-keystore-type=
+  gateway-ssl-protocols=any
+  gateway-ssl-require-authentication=true
+  gateway-ssl-truststore=
+  gateway-ssl-truststore-password=
+  groups=
+  http-service-bind-address=
+  http-service-port=7070
+  http-service-ssl-ciphers=any
+  http-service-ssl-enabled=false
+  http-service-ssl-keystore=
+  http-service-ssl-keystore-password=
+  http-service-ssl-keystore-type=
+  http-service-ssl-protocols=any
+  http-service-ssl-require-authentication=false
+  http-service-ssl-truststore=
+  http-service-ssl-truststore-password=
+  jmx-manager=false
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-hostname-for-clients=
+  jmx-manager-http-port=7070
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-ssl-ciphers=any
+  jmx-manager-ssl-enabled=false
+  jmx-manager-ssl-keystore=
+  jmx-manager-ssl-keystore-password=
+  jmx-manager-ssl-keystore-type=
+  jmx-manager-ssl-protocols=any
+  jmx-manager-ssl-require-authentication=true
+  jmx-manager-ssl-truststore=
+  jmx-manager-ssl-truststore-password=
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  load-cluster-configuration-from-dir=false
+  locator-wait-time=0
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=60000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-port=0
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-bind-address=
+  memcached-port=0
+  memcached-protocol=ASCII
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  server-ssl-ciphers=any
+  server-ssl-enabled=false
+  server-ssl-keystore=
+  server-ssl-keystore-password=
+  server-ssl-keystore-type=
+  server-ssl-protocols=any
+  server-ssl-require-authentication=true
+  server-ssl-truststore=
+  server-ssl-truststore-password=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-dev-rest-api=false
+  start-locator=
+  statistic-archive-file=
+  statistic-sample-rate=1000
+  statistic-sampling-enabled=true
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  user-command-packages=
+  writable-working-dir=
+  
+
+[info 2015/05/13 13:24:34.985 PDT server2 <main> tid=0x1] Defaulting license-working-dir to current working directory "/Users/fmelo/FinanceStream-apachecon/server2".
+
+[info 2015/05/13 13:24:34.985 PDT server2 <main> tid=0x1] Licensing required 0 milliseconds.
+
+[info 2015/05/13 13:24:35.000 PDT server2 <main> tid=0x1] Serial Queue info : THROTTLE_PERCENT: 0.75 SERIAL_QUEUE_BYTE_LIMIT :41943040 SERIAL_QUEUE_THROTTLE :31457280 TOTAL_SERIAL_QUEUE_BYTE_LIMIT :83886080 TOTAL_SERIAL_QUEUE_THROTTLE :31457280 SERIAL_QUEUE_SIZE_LIMIT :20000 SERIAL_QUEUE_SIZE_THROTTLE :15000
+
+[info 2015/05/13 13:24:35.038 PDT server2 <main> tid=0x1] GemFire P2P Listener started on  tcp:///10.84.19.52:13442
+
+[info 2015/05/13 13:24:35.145 PDT server2 <PingSender> tid=0x22] locator pivotal-guest-563(null)<v0>:10334 member address is pivotal-guest-563(locator1:25812:locator)<v0>:30608
+
+[info 2015/05/13 13:24:35.146 PDT server2 <main> tid=0x1] Attempting to join distributed system whose membership coordinator is pivotal-guest-563(locator1:25812:locator)<v0>:30608 using membership ID pivotal-guest-563(server2:25975):4593
+
+[info 2015/05/13 13:24:35.311 PDT server2 <main> tid=0x1] Membership: lead member is now pivotal-guest-563(server1:25813)<v1>:47444
+
+[info 2015/05/13 13:24:35.318 PDT server2 <FD_SOCK Ping thread> tid=0x28] GemFire failure detection is now monitoring pivotal-guest-563(locator1:25812:locator)<v0>:30608
+
+[info 2015/05/13 13:24:35.319 PDT server2 <main> tid=0x1] Connected to Jgroups channel (took  275  ms)
+
+[info 2015/05/13 13:24:35.319 PDT server2 <main> tid=0x1] Entered into membership with ID pivotal-guest-563(server2:25975)<v2>:4593.
+
+[info 2015/05/13 13:24:35.320 PDT server2 <main> tid=0x1] Starting DistributionManager pivotal-guest-563(server2:25975)<v2>:4593.  (took 296/ ms)
+
+[info 2015/05/13 13:24:35.320 PDT server2 <main> tid=0x1] Initial (membershipManager) view =  [pivotal-guest-563(locator1:25812:locator)<v0>:30608, pivotal-guest-563(server1:25813)<v1>:47444{lead}, pivotal-guest-563(server2:25975)<v2>:4593]
+
+[info 2015/05/13 13:24:35.320 PDT server2 <main> tid=0x1] Admitting member <pivotal-guest-563(locator1:25812:locator)<v0>:30608>. Now there are 1 non-admin member(s).
+
+[info 2015/05/13 13:24:35.321 PDT server2 <main> tid=0x1] Admitting member <pivotal-guest-563(server1:25813)<v1>:47444>. Now there are 2 non-admin member(s).
+
+[info 2015/05/13 13:24:35.321 PDT server2 <main> tid=0x1] Admitting member <pivotal-guest-563(server2:25975)<v2>:4593>. Now there are 3 non-admin member(s).
+
+[info 2015/05/13 13:24:35.322 PDT server2 <main> tid=0x1] Membership: Finished view processing viewID =  2
+
+[info 2015/05/13 13:24:35.345 PDT server2 <P2P message reader for pivotal-guest-563(locator1:25812:locator)<v0>:30608 shared unordered uid=2 port=55384> tid=0x2a] Member pivotal-guest-563(locator1:25812:locator)<v0>:30608 is equivalent or in the same redundancy zone.
+
+[info 2015/05/13 13:24:35.347 PDT server2 <P2P message reader for pivotal-guest-563(server1:25813)<v1>:47444 shared unordered uid=3 port=55387> tid=0x31] Member pivotal-guest-563(server1:25813)<v1>:47444 is equivalent or in the same redundancy zone.
+
+[info 2015/05/13 13:24:35.347 PDT server2 <main> tid=0x1] DistributionManager pivotal-guest-563(server2:25975)<v2>:4593 started on pivotal-guest-563.sf.pivotallabs.com[10334]. There were 2 other DMs. others: [pivotal-guest-563(locator1:25812:locator)<v0>:30608, pivotal-guest-563(server1:25813)<v1>:47444]  (VERBOSE, took 357 ms) 
+
+[info 2015/05/13 13:24:35.356 PDT server2 <Thread-5 StatSampler> tid=0x32] Disabling statistic archival.
+
+[info 2015/05/13 13:24:35.459 PDT server2 <main> tid=0x1] Initializing region _monitoringRegion_10.84.19.52<v2>4593
+
+[info 2015/05/13 13:24:35.542 PDT server2 <main> tid=0x1] Region _monitoringRegion_10.84.19.52<v2>4593 requesting initial image from pivotal-guest-563(locator1:25812:locator)<v0>:30608
+
+[info 2015/05/13 13:24:35.545 PDT server2 <main> tid=0x1] _monitoringRegion_10.84.19.52<v2>4593 is done getting image from pivotal-guest-563(locator1:25812:locator)<v0>:30608. isDeltaGII is false
+
+[info 2015/05/13 13:24:35.546 PDT server2 <main> tid=0x1] Initialization of region _monitoringRegion_10.84.19.52<v2>4593 completed
+
+[info 2015/05/13 13:24:36.311 PDT server2 <main> tid=0x1] Received cluster configuration from the locator
+
+[info 2015/05/13 13:24:36.336 PDT server2 <main> tid=0x1] 
+  ***************************************************************
+  Configuration for  'cluster'
+  
+  Jar files to deployed
+  <?xml version="1.0" encoding="UTF-8"?>
+  <cache xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" lock-lease="120" lock-timeout="60" search-timeout="300" is-server="false" copy-on-read="false" version="8.1" xmlns="http://schema.pivotal.io/gemfire/cache" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <region name="Stocks">
+      <region-attributes scope="distributed-ack" data-policy="replicate"/>
+    </region>
+    <region name="Predictions">
+      <region-attributes scope="distributed-ack" data-policy="replicate"/>
+    </region>
+  </cache>
+  
+
+[info 2015/05/13 13:24:36.425 PDT server2 <main> tid=0x1] Initializing region PdxTypes
+
+[info 2015/05/13 13:24:36.429 PDT server2 <main> tid=0x1] Region PdxTypes requesting initial image from pivotal-guest-563(server1:25813)<v1>:47444
+
+[info 2015/05/13 13:24:36.440 PDT server2 <main> tid=0x1] PdxTypes is done getting image from pivotal-guest-563(server1:25813)<v1>:47444. isDeltaGII is false
+
+[info 2015/05/13 13:24:36.441 PDT server2 <main> tid=0x1] Initialization of region PdxTypes completed
+
+[info 2015/05/13 13:24:36.446 PDT server2 <main> tid=0x1] Initializing region Stocks
+
+[info 2015/05/13 13:24:36.450 PDT server2 <main> tid=0x1] Region Stocks requesting initial image from pivotal-guest-563(server1:25813)<v1>:47444
+
+[info 2015/05/13 13:24:36.615 PDT server2 <main> tid=0x1] Stocks is done getting image from pivotal-guest-563(server1:25813)<v1>:47444. isDeltaGII is false
+
+[info 2015/05/13 13:24:36.616 PDT server2 <main> tid=0x1] Initialization of region Stocks completed
+
+[info 2015/05/13 13:24:36.625 PDT server2 <main> tid=0x1] Initializing region Predictions
+
+[info 2015/05/13 13:24:36.628 PDT server2 <main> tid=0x1] Region Predictions requesting initial image from pivotal-guest-563(server1:25813)<v1>:47444
+
+[info 2015/05/13 13:24:36.648 PDT server2 <main> tid=0x1] Predictions is done getting image from pivotal-guest-563(server1:25813)<v1>:47444. isDeltaGII is false
+
+[info 2015/05/13 13:24:36.649 PDT server2 <main> tid=0x1] Initialization of region Predictions completed
+
+[info 2015/05/13 13:24:36.666 PDT server2 <main> tid=0x1] Bridge server connection listener bound to address 0.0.0.0/0.0.0.0:40443 with backlog 1,000.
+
+[info 2015/05/13 13:24:36.686 PDT server2 <main> tid=0x1] ClientHealthMonitorThread maximum allowed time between pings: 60,000
+
+[info 2015/05/13 13:24:36.695 PDT server2 <main> tid=0x1] CacheServer Configuration:   port=40443 max-connections=800 max-threads=0 notify-by-subscription=true socket-buffer-size=32768 maximum-time-between-pings=60000 maximum-message-count=230000 message-time-to-live=180 eviction-policy=none capacity=1 overflow directory=. groups=[] loadProbe=ConnectionCountProbe loadPollInterval=5000 tcpNoDelay=true
+
+[info 2015/05/13 13:27:25.645 PDT server2 <Thread-15> tid=0x4c] GemFireCache[id = 2050462663; isClosing = true; isShutDownAll = false; closingGatewayHubsByShutdownAll = false; created = Wed May 13 13:24:35 PDT 2015; server = true; copyOnRead = false; lockLease = 120; lockTimeout = 60]: Now closing.
+
+[info 2015/05/13 13:27:25.656 PDT server2 <Thread-15> tid=0x4c] Resetting original MemoryPoolMXBean heap threshold bytes 0 on pool PS Old Gen
+
+[info 2015/05/13 13:27:25.659 PDT server2 <Thread-15> tid=0x4c] Bridge server on port 40,443 is shutting down.
+
+[info 2015/05/13 13:27:25.660 PDT server2 <Distributed system shutdown hook> tid=0xe] VM is exiting - shutting down distributed system
+
+[info 2015/05/13 13:27:25.669 PDT server2 <Thread-15> tid=0x4c] Shutting down DistributionManager pivotal-guest-563(server2:25975)<v2>:4593. 
+
+[info 2015/05/13 13:27:25.775 PDT server2 <Thread-15> tid=0x4c] Now closing distribution for pivotal-guest-563(server2:25975)<v2>:4593
+
+[info 2015/05/13 13:27:25.936 PDT server2 <Thread-15> tid=0x4c] DistributionManager stopped in 266ms.
+
+[info 2015/05/13 13:27:25.937 PDT server2 <Thread-15> tid=0x4c] Marking DistributionManager pivotal-guest-563(server2:25975)<v2>:4593 as closed.
