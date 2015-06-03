@@ -1,7 +1,7 @@
 # Stock Prediction demo setup
 
 ##  Pre-requisites:
-- Apache Geode installed
+- Pivotal GemFire 8.1+ installed
 - Spring XD 1.1+ installed
 - R 3.1+ installed with the following packages
 . RCurl
@@ -34,7 +34,7 @@ Install **R**:
 > install.packages(c("RCurl","quantmod","TTR","jsonlite","RSNNS"))
 ----
 
-### Apache Geode Setup
+### Pivotal GemFire Setup
 
 * Execute the `setup.gfsh` script as follows:
 
@@ -144,7 +144,7 @@ $ ./gradlew run
 
 ## UI using JavaFX
 
-The UI for the application uses JavaFX and acting as Geode client can subscribe to event notifications on the regions and receive updates as soon as data is updated on the servers, leveraging a PUSH instead of PULL strategy, which is much more efficient.
+The UI for the application uses JavaFX and acting as GemFire client can subscribe to event notifications on the regions and receive updates as soon as data is updated on the servers, leveraging a PUSH instead of PULL strategy, which is much more efficient.
 
 Under JavaFXChart directory you can build/execute the client:
 
