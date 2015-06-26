@@ -1,0 +1,577 @@
+
+[info 2015/06/25 19:23:58.860 PDT locator <main> tid=0x1] 
+  ---------------------------------------------------------------------------
+  
+    Copyright (C) 1997-2015 Pivotal Software, Inc. All rights reserved. This
+    product is protected by U.S. and international copyright and intellectual
+    property laws. Pivotal products are covered by one or more patents listed
+    at http://www.pivotal.io/patents.  Pivotal is a registered trademark
+    of trademark of Pivotal Software, Inc. in the United States and/or other
+    jurisdictions.  All other marks and names mentioned herein may be
+    trademarks of their respective companies.
+  
+  ---------------------------------------------------------------------------
+  Java version:   8.1.0 build 50625 01/16/2015 16:21:01 PST javac 1.7.0_72
+  Native version: native code unavailable
+  Source revision: 50625
+  Source repository: gemfire/branches/cedar_dev_Oct12
+  Running on: FrederiMelosMBP/192.168.1.10, 8 cpu(s), x86_64 Mac OS X 10.10.3
+  Process ID: 6153
+  User: fmelo
+  Current dir: /Users/fmelo/StockPrediction-docker/locator
+  Home dir: /Users/fmelo
+  Command Line Parameters:
+    -Dgemfire.enable-cluster-configuration=true
+    -Dgemfire.mcast-port=0
+    -Dgemfire.load-cluster-configuration-from-dir=false
+    -Dgemfire.jmx-manager-hostname-for-clients=192.168.99.100
+    -Dgemfire.launcher.registerSignalHandlers=true
+    -Djava.awt.headless=true
+    -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+  Class Path:
+    /Users/fmelo/gemfire/lib/gemfire.jar
+    /Users/fmelo/gemfire/lib/locator-dependencies.jar
+  Library Path:
+    /Users/fmelo/Library/Java/Extensions
+    /Library/Java/Extensions
+    /Network/Library/Java/Extensions
+    /System/Library/Java/Extensions
+    /usr/lib/java
+    .
+  System Properties:
+      Locator.forceLocatorDMType = true
+      awt.toolkit = sun.lwawt.macosx.LWCToolkit
+      file.encoding = UTF-8
+      file.encoding.pkg = sun.io
+      file.separator = /
+      ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      gemfire.enable-cluster-configuration = true
+      gemfire.jmx-manager-hostname-for-clients = 192.168.99.100
+      gemfire.launcher.registerSignalHandlers = true
+      gemfire.load-cluster-configuration-from-dir = false
+      gemfire.mcast-port = 0
+      gopherProxySet = false
+      http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      java.awt.graphicsenv = sun.awt.CGraphicsEnvironment
+      java.awt.headless = true
+      java.awt.printerjob = sun.lwawt.macosx.CPrinterJob
+      java.class.version = 52.0
+      java.endorsed.dirs = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/endorsed
+      java.ext.dirs = /Users/fmelo/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+      java.home = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre
+      java.io.tmpdir = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/
+      java.runtime.name = Java(TM) SE Runtime Environment
+      java.runtime.version = 1.8.0_40-b27
+      java.specification.name = Java Platform API Specification
+      java.specification.vendor = Oracle Corporation
+      java.specification.version = 1.8
+      java.vendor = Oracle Corporation
+      java.vendor.url = http://java.oracle.com/
+      java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+      java.version = 1.8.0_40
+      java.vm.info = mixed mode
+      java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+      java.vm.specification.name = Java Virtual Machine Specification
+      java.vm.specification.vendor = Oracle Corporation
+      java.vm.specification.version = 1.8
+      java.vm.vendor = Oracle Corporation
+      java.vm.version = 25.40-b25
+      jna.platform.library.path = /usr/lib:/usr/lib
+      jnidispatch.path = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/jna-97546881/jna609623116456723209.tmp
+      line.separator = 
+  
+      log4j.configurationFile = jar:file:/Users/fmelo/Pivotal_GemFire_810_b50625_Linux/lib/gemfire.jar!/com/gemstone/gemfire/internal/logging/log4j/log4j2-default.xml
+      os.version = 10.10.3
+      path.separator = :
+      socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      sun.arch.data.model = 64
+      sun.boot.class.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/classes
+      sun.boot.library.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib
+      sun.cpu.endian = little
+      sun.cpu.isalist = 
+      sun.io.unicode.encoding = UnicodeBig
+      sun.java.command = com.gemstone.gemfire.distributed.LocatorLauncher start locator --hostname-for-clients=192.168.99.100 --port=10334 --redirect-output
+      sun.java.launcher = SUN_STANDARD
+      sun.jnu.encoding = UTF-8
+      sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+      sun.os.patch.level = unknown
+      sun.rmi.dgc.server.gcInterval = 9223372036854775806
+      user.country = US
+      user.language = en
+      user.timezone = America/Los_Angeles
+  ---------------------------------------------------------------------------
+  
+
+[info 2015/06/25 19:23:59.116 PDT locator <main> tid=0x1] Starting peer location for Distribution Locator on FrederiMelosMBP[10334]
+
+[info 2015/06/25 19:23:59.118 PDT locator <main> tid=0x1] Starting Distribution Locator on FrederiMelosMBP[10334]
+
+[info 2015/06/25 19:24:00.124 PDT locator <main> tid=0x1] Starting distributed system
+
+[info 2015/06/25 19:24:00.129 PDT locator <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with system property ###
+  enable-cluster-configuration=true
+  jmx-manager-hostname-for-clients=192.168.99.100
+  load-cluster-configuration-from-dir=false
+  mcast-port=0
+  ### GemFire Properties defined with api ###
+  cache-xml-file=
+  locators=192.168.1.10[10334]
+  name=locator
+  ### GemFire Properties defined with launcher ###
+  log-file=locator.log
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cluster-configuration-dir=/Users/fmelo/StockPrediction-docker/locator
+  cluster-ssl-ciphers=any
+  cluster-ssl-enabled=false
+  cluster-ssl-keystore=
+  cluster-ssl-keystore-password=
+  cluster-ssl-keystore-type=
+  cluster-ssl-protocols=any
+  cluster-ssl-require-authentication=true
+  cluster-ssl-truststore=
+  cluster-ssl-truststore-password=
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=.
+  disable-auto-reconnect=false
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  gateway-ssl-ciphers=any
+  gateway-ssl-enabled=false
+  gateway-ssl-keystore=
+  gateway-ssl-keystore-password=
+  gateway-ssl-keystore-type=
+  gateway-ssl-protocols=any
+  gateway-ssl-require-authentication=true
+  gateway-ssl-truststore=
+  gateway-ssl-truststore-password=
+  groups=
+  http-service-bind-address=
+  http-service-port=7070
+  http-service-ssl-ciphers=any
+  http-service-ssl-enabled=false
+  http-service-ssl-keystore=
+  http-service-ssl-keystore-password=
+  http-service-ssl-keystore-type=
+  http-service-ssl-protocols=any
+  http-service-ssl-require-authentication=false
+  http-service-ssl-truststore=
+  http-service-ssl-truststore-password=
+  jmx-manager=true
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-http-port=7070
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-ssl-ciphers=any
+  jmx-manager-ssl-enabled=false
+  jmx-manager-ssl-keystore=
+  jmx-manager-ssl-keystore-password=
+  jmx-manager-ssl-keystore-type=
+  jmx-manager-ssl-protocols=any
+  jmx-manager-ssl-require-authentication=true
+  jmx-manager-ssl-truststore=
+  jmx-manager-ssl-truststore-password=
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  locator-wait-time=0
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=60000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-bind-address=
+  memcached-port=0
+  memcached-protocol=ASCII
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  server-ssl-ciphers=any
+  server-ssl-enabled=false
+  server-ssl-keystore=
+  server-ssl-keystore-password=
+  server-ssl-keystore-type=
+  server-ssl-protocols=any
+  server-ssl-require-authentication=true
+  server-ssl-truststore=
+  server-ssl-truststore-password=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-dev-rest-api=false
+  start-locator=
+  statistic-archive-file=
+  statistic-sample-rate=1000
+  statistic-sampling-enabled=true
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  use-cluster-configuration=true
+  user-command-packages=
+  writable-working-dir=
+  
+
+[info 2015/06/25 19:24:00.152 PDT locator <main> tid=0x1] 
+  ---------------------------------------------------------------------------
+  
+    Copyright (C) 1997-2015 Pivotal Software, Inc. All rights reserved. This
+    product is protected by U.S. and international copyright and intellectual
+    property laws. Pivotal products are covered by one or more patents listed
+    at http://www.pivotal.io/patents.  Pivotal is a registered trademark
+    of trademark of Pivotal Software, Inc. in the United States and/or other
+    jurisdictions.  All other marks and names mentioned herein may be
+    trademarks of their respective companies.
+  
+  ---------------------------------------------------------------------------
+  Java version:   8.1.0 build 50625 01/16/2015 16:21:01 PST javac 1.7.0_72
+  Native version: native code unavailable
+  Source revision: 50625
+  Source repository: gemfire/branches/cedar_dev_Oct12
+  Running on: FrederiMelosMBP/192.168.1.10, 8 cpu(s), x86_64 Mac OS X 10.10.3
+  Process ID: 6153
+  User: fmelo
+  Current dir: /Users/fmelo/StockPrediction-docker/locator
+  Home dir: /Users/fmelo
+  Command Line Parameters:
+    -Dgemfire.enable-cluster-configuration=true
+    -Dgemfire.mcast-port=0
+    -Dgemfire.load-cluster-configuration-from-dir=false
+    -Dgemfire.jmx-manager-hostname-for-clients=192.168.99.100
+    -Dgemfire.launcher.registerSignalHandlers=true
+    -Djava.awt.headless=true
+    -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+  Class Path:
+    /Users/fmelo/gemfire/lib/gemfire.jar
+    /Users/fmelo/gemfire/lib/locator-dependencies.jar
+  Library Path:
+    /Users/fmelo/Library/Java/Extensions
+    /Library/Java/Extensions
+    /Network/Library/Java/Extensions
+    /System/Library/Java/Extensions
+    /usr/lib/java
+    .
+  System Properties:
+      Locator.forceLocatorDMType = true
+      awt.toolkit = sun.lwawt.macosx.LWCToolkit
+      file.encoding = UTF-8
+      file.encoding.pkg = sun.io
+      file.separator = /
+      ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      gemfire.enable-cluster-configuration = true
+      gemfire.jmx-manager-hostname-for-clients = 192.168.99.100
+      gemfire.launcher.registerSignalHandlers = true
+      gemfire.load-cluster-configuration-from-dir = false
+      gemfire.mcast-port = 0
+      gopherProxySet = false
+      http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      java.awt.graphicsenv = sun.awt.CGraphicsEnvironment
+      java.awt.headless = true
+      java.awt.printerjob = sun.lwawt.macosx.CPrinterJob
+      java.class.version = 52.0
+      java.endorsed.dirs = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/endorsed
+      java.ext.dirs = /Users/fmelo/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+      java.home = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre
+      java.io.tmpdir = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/
+      java.rmi.server.randomIDs = true
+      java.runtime.name = Java(TM) SE Runtime Environment
+      java.runtime.version = 1.8.0_40-b27
+      java.specification.name = Java Platform API Specification
+      java.specification.vendor = Oracle Corporation
+      java.specification.version = 1.8
+      java.vendor = Oracle Corporation
+      java.vendor.url = http://java.oracle.com/
+      java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+      java.version = 1.8.0_40
+      java.vm.info = mixed mode
+      java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+      java.vm.specification.name = Java Virtual Machine Specification
+      java.vm.specification.vendor = Oracle Corporation
+      java.vm.specification.version = 1.8
+      java.vm.vendor = Oracle Corporation
+      java.vm.version = 25.40-b25
+      jna.platform.library.path = /usr/lib:/usr/lib
+      jnidispatch.path = /var/folders/x1/zcnyc3f93xxd6zr06vxwtdz40000gp/T/jna-97546881/jna609623116456723209.tmp
+      line.separator = 
+  
+      log4j.configurationFile = jar:file:/Users/fmelo/Pivotal_GemFire_810_b50625_Linux/lib/gemfire.jar!/com/gemstone/gemfire/internal/logging/log4j/log4j2-default.xml
+      os.version = 10.10.3
+      p2p.joinTimeout = 5000
+      p2p.useSSL = false
+      path.separator = :
+      socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+      sun.arch.data.model = 64
+      sun.boot.class.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/classes
+      sun.boot.library.path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib
+      sun.cpu.endian = little
+      sun.cpu.isalist = 
+      sun.io.unicode.encoding = UnicodeBig
+      sun.java.command = com.gemstone.gemfire.distributed.LocatorLauncher start locator --hostname-for-clients=192.168.99.100 --port=10334 --redirect-output
+      sun.java.launcher = SUN_STANDARD
+      sun.jnu.encoding = UTF-8
+      sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+      sun.os.patch.level = unknown
+      sun.rmi.dgc.server.gcInterval = 9223372036854775806
+      user.country = US
+      user.language = en
+      user.timezone = America/Los_Angeles
+  ---------------------------------------------------------------------------
+  
+
+[info 2015/06/25 19:24:00.154 PDT locator <main> tid=0x1] Startup Configuration:
+   ### GemFire Properties defined with system property ###
+  enable-cluster-configuration=true
+  jmx-manager-hostname-for-clients=192.168.99.100
+  load-cluster-configuration-from-dir=false
+  mcast-port=0
+  ### GemFire Properties defined with api ###
+  cache-xml-file=
+  locators=192.168.1.10[10334]
+  name=locator
+  ### GemFire Properties defined with launcher ###
+  log-file=locator.log
+  ### GemFire Properties using default values ###
+  ack-severe-alert-threshold=0
+  ack-wait-threshold=15
+  archive-disk-space-limit=0
+  archive-file-size-limit=0
+  async-distribution-timeout=0
+  async-max-queue-size=8
+  async-queue-timeout=60000
+  bind-address=
+  cluster-configuration-dir=/Users/fmelo/StockPrediction-docker/locator
+  cluster-ssl-ciphers=any
+  cluster-ssl-enabled=false
+  cluster-ssl-keystore=
+  cluster-ssl-keystore-password=
+  cluster-ssl-keystore-type=
+  cluster-ssl-protocols=any
+  cluster-ssl-require-authentication=true
+  cluster-ssl-truststore=
+  cluster-ssl-truststore-password=
+  conflate-events=server
+  conserve-sockets=true
+  delta-propagation=true
+  deploy-working-dir=.
+  disable-auto-reconnect=false
+  disable-tcp=false
+  distributed-system-id=-1
+  durable-client-id=
+  durable-client-timeout=300
+  enable-network-partition-detection=false
+  enable-time-statistics=false
+  enforce-unique-host=false
+  gateway-ssl-ciphers=any
+  gateway-ssl-enabled=false
+  gateway-ssl-keystore=
+  gateway-ssl-keystore-password=
+  gateway-ssl-keystore-type=
+  gateway-ssl-protocols=any
+  gateway-ssl-require-authentication=true
+  gateway-ssl-truststore=
+  gateway-ssl-truststore-password=
+  groups=
+  http-service-bind-address=
+  http-service-port=7070
+  http-service-ssl-ciphers=any
+  http-service-ssl-enabled=false
+  http-service-ssl-keystore=
+  http-service-ssl-keystore-password=
+  http-service-ssl-keystore-type=
+  http-service-ssl-protocols=any
+  http-service-ssl-require-authentication=false
+  http-service-ssl-truststore=
+  http-service-ssl-truststore-password=
+  jmx-manager=true
+  jmx-manager-access-file=
+  jmx-manager-bind-address=
+  jmx-manager-http-port=7070
+  jmx-manager-password-file=
+  jmx-manager-port=1099
+  jmx-manager-ssl=false
+  jmx-manager-ssl-ciphers=any
+  jmx-manager-ssl-enabled=false
+  jmx-manager-ssl-keystore=
+  jmx-manager-ssl-keystore-password=
+  jmx-manager-ssl-keystore-type=
+  jmx-manager-ssl-protocols=any
+  jmx-manager-ssl-require-authentication=true
+  jmx-manager-ssl-truststore=
+  jmx-manager-ssl-truststore-password=
+  jmx-manager-start=false
+  jmx-manager-update-rate=2000
+  license-application-cache=
+  license-data-management=
+  license-server-timeout=10000
+  license-working-dir=
+  locator-wait-time=0
+  log-disk-space-limit=0
+  log-file-size-limit=0
+  log-level=config
+  max-num-reconnect-tries=3
+  max-wait-time-reconnect=60000
+  mcast-address=239.192.81.1
+  mcast-flow-control=1048576, 0.25, 5000
+  mcast-recv-buffer-size=1048576
+  mcast-send-buffer-size=65535
+  mcast-ttl=32
+  member-timeout=5000
+  membership-port-range=1024-65535
+  memcached-bind-address=
+  memcached-port=0
+  memcached-protocol=ASCII
+  redundancy-zone=
+  remote-locators=
+  remove-unresponsive-client=false
+  roles=
+  security-=
+  security-client-accessor=
+  security-client-accessor-pp=
+  security-client-auth-init=
+  security-client-authenticator=
+  security-client-dhalgo=
+  security-log-file=
+  security-log-level=config
+  security-peer-auth-init=
+  security-peer-authenticator=
+  security-peer-verifymember-timeout=1000
+  server-bind-address=
+  server-ssl-ciphers=any
+  server-ssl-enabled=false
+  server-ssl-keystore=
+  server-ssl-keystore-password=
+  server-ssl-keystore-type=
+  server-ssl-protocols=any
+  server-ssl-require-authentication=true
+  server-ssl-truststore=
+  server-ssl-truststore-password=
+  socket-buffer-size=32768
+  socket-lease-time=60000
+  ssl-ciphers=any
+  ssl-enabled=false
+  ssl-protocols=any
+  ssl-require-authentication=true
+  start-dev-rest-api=false
+  start-locator=
+  statistic-archive-file=
+  statistic-sample-rate=1000
+  statistic-sampling-enabled=true
+  tcp-port=0
+  udp-fragment-size=60000
+  udp-recv-buffer-size=1048576
+  udp-send-buffer-size=65535
+  use-cluster-configuration=true
+  user-command-packages=
+  writable-working-dir=
+  
+
+[info 2015/06/25 19:24:00.202 PDT locator <main> tid=0x1] Serial Queue info : THROTTLE_PERCENT: 0.75 SERIAL_QUEUE_BYTE_LIMIT :41943040 SERIAL_QUEUE_THROTTLE :31457280 TOTAL_SERIAL_QUEUE_BYTE_LIMIT :83886080 TOTAL_SERIAL_QUEUE_THROTTLE :31457280 SERIAL_QUEUE_SIZE_LIMIT :20000 SERIAL_QUEUE_SIZE_THROTTLE :15000
+
+[info 2015/06/25 19:24:00.242 PDT locator <main> tid=0x1] GemFire P2P Listener started on  tcp:///192.168.1.10:57455
+
+[info 2015/06/25 19:24:00.330 PDT locator <PingSender> tid=0x29] locator FrederiMelosMBP(null)<v0>:10334 member address is FrederiMelosMBP(locator:6153:locator):47006
+
+[info 2015/06/25 19:24:07.340 PDT locator <PingSender> tid=0x3a] locator FrederiMelosMBP(null)<v0>:10334 member address is FrederiMelosMBP(locator:6153:locator):47006
+
+[info 2015/06/25 19:24:12.353 PDT locator <main> tid=0x1] This member, FrederiMelosMBP(locator:6153:locator):47006, is becoming group coordinator.
+
+[info 2015/06/25 19:24:12.355 PDT locator <main> tid=0x1] Connected to Jgroups channel (took  12,111  ms)
+
+[info 2015/06/25 19:24:12.356 PDT locator <main> tid=0x1] Entered into membership with ID FrederiMelosMBP(locator:6153:locator)<v0>:47006.
+
+[info 2015/06/25 19:24:12.357 PDT locator <main> tid=0x1] Starting DistributionManager FrederiMelosMBP(locator:6153:locator)<v0>:47006.  (took 12144/ ms)
+
+[info 2015/06/25 19:24:12.357 PDT locator <main> tid=0x1] Initial (membershipManager) view =  [FrederiMelosMBP(locator:6153:locator)<v0>:47006]
+
+[info 2015/06/25 19:24:12.357 PDT locator <main> tid=0x1] Admitting member <FrederiMelosMBP(locator:6153:locator)<v0>:47006>. Now there are 1 non-admin member(s).
+
+[info 2015/06/25 19:24:12.358 PDT locator <main> tid=0x1] FrederiMelosMBP(locator:6153:locator)<v0>:47006 is the elder and the only member.
+
+[info 2015/06/25 19:24:12.358 PDT locator <main> tid=0x1] Membership: Finished view processing viewID =  0
+
+[info 2015/06/25 19:24:12.360 PDT locator <main> tid=0x1] Did not hear back from any other system. I am the first one.
+
+[info 2015/06/25 19:24:12.360 PDT locator <main> tid=0x1] DistributionManager FrederiMelosMBP(locator:6153:locator)<v0>:47006 started on FrederiMelosMBP[10334]. There were 0 other DMs. others: []  (VERBOSE, took 12195 ms)  (locator)
+
+[info 2015/06/25 19:24:12.371 PDT locator <Thread-31 StatSampler> tid=0x48] Disabling statistic archival.
+
+[info 2015/06/25 19:24:12.372 PDT locator <main> tid=0x1] Creating cache for locator.
+
+[info 2015/06/25 19:24:12.514 PDT locator <main> tid=0x1] Initializing region _monitoringRegion_192.168.1.10<v0>47006
+
+[info 2015/06/25 19:24:12.517 PDT locator <main> tid=0x1] Initialization of region _monitoringRegion_192.168.1.10<v0>47006 completed
+
+[info 2015/06/25 19:24:13.270 PDT locator <main> tid=0x1] SharedConfigStatusRequestHandler installed
+
+[info 2015/06/25 19:24:13.270 PDT locator <main> tid=0x1] Locator started on  192.168.1.10[10334]
+
+[info 2015/06/25 19:24:13.271 PDT locator <main> tid=0x1] Starting server location for Distribution Locator on FrederiMelosMBP[10334]
+
+[info 2015/06/25 19:24:13.319 PDT locator <Pooled Message Processor 1> tid=0x51] Created disk store cluster_config with unique id 290e97777e0846af-94cae93fac591630
+
+[info 2015/06/25 19:24:13.327 PDT locator <Pooled Message Processor 1> tid=0x51] recovery region initialization took 0 ms
+
+[info 2015/06/25 19:24:13.390 PDT locator <Pooled Message Processor 1> tid=0x51] Created oplog#1 drf for disk store cluster_config.
+
+[info 2015/06/25 19:24:13.444 PDT locator <Pooled Message Processor 1> tid=0x51] Created oplog#1 crf for disk store cluster_config.
+
+[warning 2015/06/25 19:24:13.446 PDT locator <Pooled Message Processor 1> tid=0x51] Creating persistent region _ConfigurationRegion, but enable-network-partition-detection is set to false. Running with network partition detection disabled can lead to an unrecoverable system in the event of a network split.
+
+[info 2015/06/25 19:24:13.447 PDT locator <Pooled Message Processor 1> tid=0x51] Initializing region _ConfigurationRegion
+
+[info 2015/06/25 19:24:13.448 PDT locator <Pooled Message Processor 1> tid=0x51] Region /_ConfigurationRegion was created on this member with the persistent id /192.168.1.10:/Users/fmelo/StockPrediction-docker/locator/ConfigDiskDir_locator created at timestamp 1435285453446 version 0 diskStoreId 290e97777e0846af-94cae93fac591630 name locator.
+
+[info 2015/06/25 19:24:13.451 PDT locator <Pooled Message Processor 1> tid=0x51] Initialization of region _ConfigurationRegion completed
+
+[info 2015/06/25 19:24:13.466 PDT locator <Pooled Message Processor 1> tid=0x51] Completed writing the shared configuration to 'cluster_config' directory
+
+[info 2015/06/25 19:24:13.467 PDT locator <Pooled Message Processor 1> tid=0x51] Getting Jar files from other locators
+
+[info 2015/06/25 19:24:13.467 PDT locator <Pooled Message Processor 1> tid=0x51] No other locators present
+
+[info 2015/06/25 19:24:13.469 PDT locator <Pooled Message Processor 1> tid=0x51] ConfigRequestHandler installed
+
+[info 2015/06/25 19:24:13.469 PDT locator <Pooled Message Processor 1> tid=0x51] Cluster configuration service start up completed successfully and is now running ....
