@@ -1,0 +1,49 @@
+locator:
+  #build: .
+  image: markito/geode-docker
+  hostname: locator
+  mem_limit: 512m
+  expose:
+   - "10334"
+   - "1099"
+   - "7575"
+  ports:
+   - "1099:1099"
+   - "10334:10334"
+   - "7575:7575"
+   - "7070:7070"
+  volumes:
+   - scripts/:/data/
+  command: /data/gfshWrapper.sh gfsh start locator --J="-Dgemfire.jmx-manager-hostname-for-clients=192.168.99.100" --hostname-for-clients=192.168.99.100 --name=locator --mcast-port=0 
+
+server:
+  #build: .
+  image: markito/geode-docker
+  # hostname: server
+  mem_limit: 2g
+  links:
+   - locator:locator
+  expose:
+   - "8080"
+   - "40404"
+   - "1099"
+  ports:
+   - "40404:40404"
+  volumes:
+   - scripts/:/data/
+  command: /data/startServer.sh --hostname-for-clients=192.168.99.100 --max-heap=1G
+
+springxd:
+  #build: .
+  image: fredmelo/financestreamdemo-streaming
+  # hostname: server
+  mem_limit: 1g
+  links:
+   - locator:locator
+  expose:
+   - "9393"
+  ports:
+   - "9393:9393"
+  volumes:
+   - data/:/data/
+  command: xd-singlenode
