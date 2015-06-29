@@ -2,41 +2,41 @@
 
 ## Using Docker Composer
 
-. Build the Spring XD + R docker container
+* Build the Spring XD + R docker container
 
 
 ----
 docker build --force-rm=true -t fredmelo/financestreamdemo-streaming -f Dockerfile-streaming .
 ----
 
-. Start Docker Composer (assuming docker composer is installed on MacOSX)
+* Start Docker Composer (assuming docker composer is installed on MacOSX)
 
 ----
 ./setup-composer.sh
 ----
 
-. Setup the Geode cluster, regions and import data
+* Setup the Geode cluster, regions and import data
 
 ----
 cd StockPrediction/data
 ./setup.sh
 ----
 
-. Setup the Spring XD streams:
+* Setup the Spring XD streams:
 
 ----
 cd StockPrediction/streaming
 ./create-streams.sh
 ----
 
-. Start the JavaFX UI:
+* Start the JavaFX UI:
 
 ----
 cd StockPrediction/JavaFXChart
 ./startGUI.sh
 ----
 
-. Run the simulator: 
+* Run the simulator: 
 
 ----
 cd StockPrediction/FinanceStreamSimulator
