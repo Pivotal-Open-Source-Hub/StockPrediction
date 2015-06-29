@@ -1,7 +1,0 @@
-FROM 	springxd/shell
-
-ENV     PATH $PATH:springxd/xd/bin:springxd/shell/bin
-
-# Bundle source
-COPY 	streaming streaming
-

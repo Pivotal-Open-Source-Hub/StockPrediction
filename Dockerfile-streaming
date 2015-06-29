@@ -21,9 +21,6 @@ ENV     XD_HOME $XD_BASE/xd
 
 ENV     PATH $PATH:$XD_HOME/bin:$XD_BASE/shell/bin:$JAVA_HOME/bin
 
-# Bundle source
-COPY 	streaming streaming
-COPY	prediction prediction
 
 CMD ["xd-singlenode"]
 

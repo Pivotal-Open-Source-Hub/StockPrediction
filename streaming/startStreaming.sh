@@ -1,1 +1,1 @@
-shell/bin/xd-shell --cmdfile streaming/stream-create.xd
+xd-shell --cmdfile stream-create.xd
