@@ -1,0 +1,14 @@
+# GemFire setup
+start locator --name=locator1 --J=-Dgemfire.http-service-port=7575
+
+start server --name=server1 --J=-Dgemfire.start-dev-rest-api=true --J=-Dgemfire.http-service-port=8080
+
+create region --name=/Stocks --type=REPLICATE
+
+import data --file=../TSLA.gfd --region=/Stocks --member=server1
+
+create region --name=/Predictions --type=REPLICATE
+
+
+describe region --name=/Stocks
+describe region --name=/Predictions

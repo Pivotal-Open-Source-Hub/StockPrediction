@@ -1,0 +1,2 @@
+stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
+stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
