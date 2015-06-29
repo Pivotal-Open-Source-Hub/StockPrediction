@@ -1,154 +1,43 @@
 # Stock Prediction demo setup
 
-##  Pre-requisites:
-- Pivotal GemFire 8.1+ installed
-- Spring XD 1.1+ installed
-- R 3.1+ installed with the following packages
-. RCurl
-. quantmod
-. TTR
-. jsonlite
-. RSNNS +
+Build XD + R Container:
 
-### Installation 
+docker build --force-rm=true -t fredmelo/financestreamdemo-streaming -f Dockerfile-streaming .
 
-Install **R**: 
+Modify file applcation.properties on Simulator with boot2docker ip
 
-* Linux 
+Modify file docker-compose.yml with boot2docker ip
 
-----
-    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
-    sudo yum update
-    sudo yum install R
-----
+—
 
-* Mac OSX (homebrew)
+Environment up:
 
-----
- brew install R
-----
+docker-compose up -d
 
-* The **R** packages can be easily installed by typing at the R command line: 
+—
 
-----
-> install.packages(c("RCurl","quantmod","TTR","jsonlite","RSNNS"))
-----
+Setup data:
 
-### Pivotal GemFire Setup
+cd data
+./setup.sh
 
-* Execute the `setup.gfsh` script as follows:
+—
 
-----
-gfsh run --file=setup.gfsh
+Create streams:
 
-1. Executing - start locator --name=locator1 --J=-Dgemfire.http-service-port=7575
+docker ps
+docker exec <streaming> xd-shell --cmdfile streaming/stream-create.xd
 
-.............................
-Locator in FinanceStream/locator1 on 192.168.3.5[10334] as locator1 is currently online.
-Process ID: 34681
-Uptime: 15 seconds
-...
-Successfully connected to: [host=192.168.3.5, port=1099]
+—
+UI:
 
-Cluster configuration service is up and running.
+Modify file JavaFXChart/src/main/resources/client.xml with Boot2docker IP
+cd JavaFXChart
+./gradlew run
 
-2. Executing - start server --name=server1 --J=-Dgemfire.start-dev-rest-api=true --J=-Dgemfire.http-service-port=8080
+—
+Simulator: 
 
-..........
-Server in FinanceStream/server1 on 192.168.3.5[40404] as server1 is currently online.
-Process ID: 34683
-Uptime: 5 seconds
-...
-
-3. Executing - create region --name=/Stocks --type=PARTITION
-
-Member  | Status
-------- | -------------------------------------
-server1 | Region "/Stocks" created on "server1"
-
-4. Executing - import data --file=../Stocks.gfd --region=/Stocks --member=server1
-
-Data imported from file : FinanceStream/Stocks.gfd on host : 192.168.3.5 to region : /Stocks
-
-5. Executing - describe --region=/Stocks
-
-Name            : Stocks
-Data Policy     : partition
-Hosting Members : server1
-
-Non-Default Attributes Shared By Hosting Members
-
- Type  | Name | Value
------- | ---- | -----
-Region | size | 2601
-----
+docker exec <simulator> FinanceStreamSimulator/gradlew -p FinanceStreamSimulator run
 
 
-* Test the server REST endpoint
-
-In a web browser, access http://localhost:8080/gemfire-api/v1
-
-----
-{
-  "regions" : [ {
-    "name" : "Stocks",
-    "type" : "REPLICATE",
-    "key-constraint" : null,
-    "value-constraint" : null
-  } ]
-}
-----
-
-## Spring XD
-
-### Create streams in Spring XD
-
-* Start with the base stream
-
-----
-xd:> script --file stream-base.xd
-
-stream create process_sink --definition "queue:stocks >  transform --script='file:transform.groovy' | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Stocks --keyExpression=payload.getField('entryTimestamp')" --deploy
-Created and deployed new stream 'process_sink'
-stream create http_source --definition "http --port=9000 | splitter --expression=#jsonPath(payload,'$') > queue:stocks" --deploy
-Created and deployed new stream 'http_source'
-----
-* If you want to show online quotes (need to be in market hours):
-
-----
-xd:> script --file stream-online-quotes.xd
-
-stream create yahoo_finance_source --definition "trigger --fixedDelay=1 | http-client --url='''https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in (\"TSLA\")&format=json&env=store://datatables.org/alltableswithkeys''' --httpMethod=GET | splitter --expression=#jsonPath(payload,'$.query.results.quote')  > queue:stocks" --deploy
-Created and deployed new stream 'yahoo_finance_source'
-----
-* If you want to show predictions:
-
-----
-xd:> script --file stream-predictions.xd
-
-stream create r_process --definition "tap:stream:process_sink.transform > object-to-json | shell --command='Rscript nn_evaluate_jordan_ema.R' | splitter --expression=#jsonPath(payload,'$') | gemfire-json-server --useLocator=true --host=localhost --port=10334 --regionName=Predictions --keyExpression=payload.getField('entryTimestamp') " --deploy
-Created and deployed new stream 'r_process'
-stream create trainstream --definition "trigger --fixedDelay=10 | shell --command='Rscript nn_train_jordan_ema.R' | log " --deploy
-Created and deployed new stream 'trainstream'
-----
-
-
-## Using the simulator:
-
-The simulator replays random 1000 quotes previously stored on GemFire / Geode
-
-----
-$ cd FinanceStreamSimulator
-$ ./gradlew run
-----
-
-## UI using JavaFX
-
-The UI for the application uses JavaFX and acting as GemFire client can subscribe to event notifications on the regions and receive updates as soon as data is updated on the servers, leveraging a PUSH instead of PULL strategy, which is much more efficient.
-
-Under JavaFXChart directory you can build/execute the client:
-
-----
-$ cd JavaFXChart
-$ ./gradlew run
-----
