@@ -13,10 +13,10 @@ RUN     wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%
 RUN     tar xvf jdk-8u45-linux-x64.tar.gz
 ENV     JAVA_HOME $HOME/jdk1.8.0_45
 
-RUN     wget http://repo.spring.io/libs-release-local/org/springframework/xd/spring-xd/1.1.0.RELEASE/spring-xd-1.1.0.RELEASE-dist.zip
-RUN     unzip spring-xd-1.1.0.RELEASE-dist.zip
+RUN     wget http://repo.spring.io/libs-release-local/org/springframework/xd/spring-xd/1.2.0.RELEASE/spring-xd-1.2.0.RELEASE-dist.zip
+RUN     unzip spring-xd-1.2.0.RELEASE-dist.zip
 
-ENV     XD_BASE $HOME/spring-xd-1.1.0.RELEASE
+ENV     XD_BASE $HOME/spring-xd-1.2.0.RELEASE
 ENV     XD_HOME $XD_BASE/xd
 
 ENV     PATH $PATH:$XD_HOME/bin:$XD_BASE/shell/bin:$JAVA_HOME/bin
