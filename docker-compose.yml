@@ -13,7 +13,8 @@ locator:
    - "7070:7070"
   volumes:
    - data/:/data/
-  command: /data/gfshWrapper.sh gfsh start locator --J="-Dgemfire.jmx-manager-hostname-for-clients=192.168.59.103" --hostname-for-clients=192.168.59.103 --name=locator --mcast-port=0 
+   - scripts/:/scripts/
+  command: /scripts/cmdWrapper.sh gfsh start locator --J="-Dgemfire.jmx-manager-hostname-for-clients=192.168.59.103" --hostname-for-clients=192.168.59.103 --name=locator --mcast-port=0 
 
 server:
   image: markito/geode-docker
@@ -35,6 +36,7 @@ springxd:
   mem_limit: 1g
   links:
    - locator:locator
+   - server:geode-server
   expose:
    - "9393"
   ports:
@@ -51,4 +53,5 @@ simulator:
    - server:geode-server
   volumes:
    - FinanceStreamSimulator/:/FinanceStreamSimulator/
-  command: FinanceStreamSimulator/gradlew -p FinanceStreamSimulator run
+   - scripts/:/scripts/
+  command: /scripts/cmdWrapper.sh FinanceStreamSimulator/gradlew -p FinanceStreamSimulator compileJava 

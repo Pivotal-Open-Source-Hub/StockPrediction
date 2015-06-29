@@ -4,7 +4,7 @@ connect --locator=locator[10334]
 
 create region --name=/Stocks --type=REPLICATE
 
-import data --file=/data/TSLA.gfd --region=/Stocks --member=0afc59e0df04
+import data --file=/data/TSLA.gfd --region=/Stocks --member=c6870c5beef6
 
 create region --name=/Predictions --type=REPLICATE
 
