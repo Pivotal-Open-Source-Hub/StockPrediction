@@ -1,0 +1,57 @@
+locator:
+  image: markito/geode-docker
+  hostname: locator
+  mem_limit: 512m
+  expose:
+   - "10334"
+   - "1099"
+   - "7575"
+  ports:
+   - "1099:1099"
+   - "10334:10334"
+   - "7575:7575"
+   - "7070:7070"
+  volumes:
+   - data/:/data/
+   - scripts/:/scripts/
+  command: /scripts/cmdWrapper.sh gfsh start locator --J="-Dgemfire.jmx-manager-hostname-for-clients=BOOT2DOCKER_IP" --hostname-for-clients=BOOT2DOCKER_IP --name=locator --mcast-port=0 
+
+server:
+  image: markito/geode-docker
+  mem_limit: 2g
+  links:
+   - locator:locator
+  expose:
+   - "8080"
+   - "40404"
+  ports:
+   - "40404:40404"
+   - "8080:8080"
+  volumes:
+   - data/:/data/
+  command: /data/startServer.sh --hostname-for-clients=BOOT2DOCKER_IP --max-heap=1G --J=-Dgemfire.start-dev-rest-api=true --J=-Dgemfire.http-service-port=8080
+
+springxd:
+  image: fredmelo/financestreamdemo-streaming
+  mem_limit: 1g
+  links:
+   - locator:locator
+   - server:geode-server
+  expose:
+   - "9393"
+  ports:
+   - "9393:9393"
+  volumes:
+   - streaming/:/streaming/
+   - prediction/:/prediction/
+  command: xd-singlenode
+
+simulator:
+  image: java:7
+  links:
+   - springxd:xd-server
+   - server:geode-server
+  volumes:
+   - FinanceStreamSimulator/:/FinanceStreamSimulator/
+   - scripts/:/scripts/
+  command: /scripts/cmdWrapper.sh FinanceStreamSimulator/gradlew -p FinanceStreamSimulator compileJava 
