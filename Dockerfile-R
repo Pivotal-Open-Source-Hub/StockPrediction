@@ -1,0 +1,30 @@
+FROM    ubuntu:14.04
+
+RUN     echo deb http://cran.cnr.Berkeley.edu/bin/linux/ubuntu trusty/ >> /etc/apt/sources.list
+RUN     apt-get update
+RUN     apt-get -y  --force-yes install r-base r-base-dev
+RUN     apt-get -y   install libcurl4-openssl-dev
+
+RUN     apt-get -y install wget tar unzip
+
+RUN     R -e 'install.packages(c("RCurl","quantmod","TTR","jsonlite","RSNNS"), repos="http://cran.us.r-project.org")'
+
+RUN     wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz"
+RUN     tar xvf jdk-8u45-linux-x64.tar.gz
+ENV     JAVA_HOME $HOME/jdk1.8.0_45
+
+RUN     wget http://repo.spring.io/libs-release-local/org/springframework/xd/spring-xd/1.2.0.RELEASE/spring-xd-1.2.0.RELEASE-dist.zip
+RUN     unzip spring-xd-1.2.0.RELEASE-dist.zip
+
+ENV     XD_BASE $HOME/spring-xd-1.2.0.RELEASE
+ENV     XD_HOME $XD_BASE/xd
+
+ENV     PATH $PATH:$XD_HOME/bin:$XD_BASE/shell/bin:$JAVA_HOME/bin
+
+# Bundle source
+COPY 	streaming streaming
+COPY	prediction prediction
+
+CMD ["xd-singlenode"]
+
+EXPOSE	9393
