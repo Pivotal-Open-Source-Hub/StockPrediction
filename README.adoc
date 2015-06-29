@@ -1,43 +1,47 @@
 # Stock Prediction demo setup
 
-Build XD + R Container:
+## Using Docker Composer
 
+. Build the Spring XD + R docker container
+
+
+----
 docker build --force-rm=true -t fredmelo/financestreamdemo-streaming -f Dockerfile-streaming .
+----
 
-Modify file applcation.properties on Simulator with boot2docker ip
+. Start Docker Composer (assuming docker composer is installed on MacOSX)
 
-Modify file docker-compose.yml with boot2docker ip
+----
+./setup-composer.sh
+----
 
-—
+. Setup the Geode cluster, regions and import data
 
-Environment up:
-
-docker-compose up -d
-
-—
-
-Setup data:
-
-cd data
+----
+cd StockPrediction/data
 ./setup.sh
+----
 
-—
+. Setup the Spring XD streams:
 
-Create streams:
+----
+cd StockPrediction/streaming
+./create-streams.sh
+----
 
-docker ps
-docker exec <streaming> xd-shell --cmdfile streaming/stream-create.xd
+. Start the JavaFX UI:
 
-—
-UI:
+----
+cd StockPrediction/JavaFXChart
+./startGUI.sh
+----
 
-Modify file JavaFXChart/src/main/resources/client.xml with Boot2docker IP
-cd JavaFXChart
-./gradlew run
+. Run the simulator: 
 
-—
-Simulator: 
+----
+cd StockPrediction/FinanceStreamSimulator
+./startSimulator.sh
+----
 
-docker exec <simulator> FinanceStreamSimulator/gradlew -p FinanceStreamSimulator run
-
+Questions please e-mail  fmelo@pivotal.io and wmarkito@pivotal.io
 
