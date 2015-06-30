@@ -4,7 +4,15 @@ connect --locator=locator[10334]
 
 create region --name=/Stocks --type=REPLICATE
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import data --file=/data/TSLA.gfd --region=/Stocks --member=f292aefd5040
+=======
 import data --file=/data/TSLA.gfd --region=/Stocks --member=4173be532d82
+>>>>>>> parent of 3092dc6... Adding Spring XD 1.2 SNAPSHOT working version
+=======
+import data --file=/data/TSLA.gfd --region=/Stocks --member=7a2717310667
+>>>>>>> parent of 53107f5... refactoring
 
 create region --name=/Predictions --type=REPLICATE
 
